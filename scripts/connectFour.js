@@ -5,75 +5,62 @@ const squares = new Array();
 
 // expresed in [x, y] corrdenates system 
 let directionMatrix = [
-    [-1, -1], [0, -1], [1, -1],
-    [-1, 0], [0, 0], [0, 1],
-    [-1, 1], [0, 1], [1, 1]
+    [-1, 1], [0, 1], [1, 1],
+    [-1, 0], [1, 0], // [0,0 direcction is not valied]
+    [-1, -1], [0, -1], [1, -1]
 ];
 
-document.addEventListener("DOMContentLoaded", () => {
-    const restult = document.querySelector("#result");
-    const grid = document.querySelector(".grid");
-    // posibles values for currentplayer: playerBlack playerRed
-    currentPlayer = "playerBlack";
-    // create the crid
-    for (let row = 0; row < ROW_LENGTH; row++) {
-        for (let col = 0; col < ROW_LENGTH; col++) {
-            const square = document.createElement("div");
-            square.setAttribute("row", row);
-            square.setAttribute("column", col);
-            square.setAttribute("id", row + "-" + col);
-            square.addEventListener("click", squareClick);
-            grid.appendChild(square);
-            squares.push(square);
-        }
-    }
-});
-
+/**
+ * this method is called on click action on every div element inside the grid. this method chekc if the current element is 
+ * available to be taked by the player.
+ * 
+ * TODO: only allow play in correct coordenate. future inprovement allow column selection 
+ * 
+ */
 function squareClick() {
     const square = this;
     var row = Number.parseInt(square.getAttribute("row"));
     var col = Number.parseInt(square.getAttribute("column"));
 
-    // TODO: only allow play in correct coordenate. future inprovement allow column selection 
     var id = (row + 1) + "-" + col;
     const nextSquare = document.getElementById(id);
-    if (row == ROW_LENGTH - 1 || (nextSquare != null && nextSquare.classList.contains("taken"))) {
+    if (!square.classList.contains("taken") && (row == ROW_LENGTH - 1 || nextSquare.classList.contains("taken"))) {
         square.classList.add("taken");
         square.classList.add(currentPlayer);
-
-        //TODO: temporal
-        checkPlayerWon();
-
-        currentPlayer = currentPlayer == "playerBlack" ? "playerRed" : "playerBlack";
-        // TODO: inprove  name
-        document.getElementById("current_Player").innerHTML = currentPlayer;
-
+        setTimeout(() => {
+            if (checkPlayerWon()) {
+                alert(currentPlayer + " WINS !!!");
+            } else {
+                currentPlayer = currentPlayer == "playerBlack" ? "playerRed" : "playerBlack";
+                document.getElementById("current_Player").innerHTML = currentPlayer;
+            }
+        }, 100);
     } else {
         alert("cant go there");
     }
 }
 
 /**
- * check and notify when a playeer has won the match
+ * this method check if the current Player has won the match. Only the current player (player stored in gloval variable 
+ * currentPlayer) is evaluated
  * 
+ * @returns true if current player has won, false otherwise
  */
 function checkPlayerWon() {
     for (let square of squares) {
-        // only precess taken elements by the current player
-        if (!square.classList.contains("taken") || square.classList.contains(currentPlayer))
+        // only process taken elements by the current player
+        if (!(square.classList.contains("taken") && square.classList.contains(currentPlayer)))
             continue;
 
-        // the current chip is a macht
-        var numMatches = 1;
-        var row = Number.parseInt(square.getAttribute("row"));
-        var col = Number.parseInt(square.getAttribute("column"));
-
         for (let coord of directionMatrix) {
-            //            console.log(`coord: ${row} ${col} numMatches: ${numMatches}`);
+            var numMatches = 1; // the current position count
+            var row = Number.parseInt(square.getAttribute("row"));
+            var col = Number.parseInt(square.getAttribute("column"));
+            var nextSquare = null;
             for (var i = 0; i < WIN_IN_A_ROW; i++) {
                 col += coord[0];
                 row += coord[1];
-                const nextSquare = document.getElementById(row + "-" + col);
+                nextSquare = document.getElementById(row + "-" + col);
                 if (nextSquare != null && nextSquare.classList.contains("taken") && nextSquare.classList.contains(currentPlayer)) {
                     numMatches += 1;
                 }
@@ -87,3 +74,26 @@ function checkPlayerWon() {
     // If we reach this statement: they have NOT won the game
     return false;
 }
+
+/**
+ * game init. create the grid and init the gloval variables
+ * 
+ */
+document.addEventListener("DOMContentLoaded", () => {
+    const restult = document.querySelector("#result");
+    const grid = document.querySelector(".grid");
+    // posibles values for currentplayer: playerBlack playerRed
+    currentPlayer = "playerBlack";
+    // create the grid
+    for (let row = 0; row < ROW_LENGTH; row++) {
+        for (let col = 0; col < ROW_LENGTH; col++) {
+            const square = document.createElement("div");
+            square.setAttribute("row", row);
+            square.setAttribute("column", col);
+            square.setAttribute("id", row + "-" + col);
+            square.addEventListener("click", squareClick);
+            grid.appendChild(square);
+            squares.push(square);
+        }
+    }
+});
