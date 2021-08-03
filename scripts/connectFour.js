@@ -6,7 +6,7 @@ const squares = new Array();
 // expresed in [x, y] corrdenates system 
 let directionMatrix = [
     [-1, 1], [0, 1], [1, 1],
-    [-1, 0], [1, 0], // [0,0 direcction is not valied]
+    [-1, 0], [1, 0], // [0,0 direcction is not valid]
     [-1, -1], [0, -1], [1, -1]
 ];
 
