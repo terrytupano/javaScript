@@ -1,0 +1,58 @@
+
+html {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.errArea {
+  color: lightgray;
+  background-color: lightgray;
+  border: solid 1px;
+  border-color: gray;  
+}
+
+.errMsg {
+  animation-name: errMsgAnimation;
+/*  animation-fill-mode: forwards; */
+  animation-duration: 2s;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes errMsgAnimation {
+  from {
+    color: lightgray; 
+  }
+  50% {
+    color: red;
+  }
+  to {
+    color: lightgray; 
+  }
+}
+
+.flex-inputForm {
+  background-color: whitesmoke;
+  list-style-type: none;
+  padding: 0;
+  border-radius: 3px;
+}
+.flex-inputForm-row {
+  display: flex;
+  justify-content: flex-start;
+  padding: .5em;
+}
+.flex-inputForm-row > label {
+  padding: .5em 1em .5em 0;
+  flex: 1;
+}
+.flex-inputForm-row > input {
+  flex: 2;
+}
+.flex-inputForm-row > input, .flex-inputForm-row > button {
+  padding: .5em;
+}
+.flex-inputForm-row > button {
+ background: gray;
+ color: white;
+ border: 0;
+}

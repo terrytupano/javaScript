@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My test page</title>
+  <link href="styles/testPage.css" rel="stylesheet" type="text/css" />
+  <script src="scripts/testPage.js" charset="utf-8"></script>
+</head>
+
+<body onload="init()">
+  <h1>Page for Experiments</h1>
+
+  <h2>4.- Imput component alling</h2>
+  <p>Similar to example 3. but now i.m lernig display: flex.</p>
+
+  <ul class="flex-inputForm">
+    <li>
+      <span id="example4.errMsg" class="errArea">invisible text</span>
+    </li>
+
+    <li class="flex-inputForm-row">
+      <label for="gameType">Select your game type</label>
+      <select oninput="onInput()" id="gameType">
+        <option value="">-- Select game Type --</option>
+        <option value="HvH">Human -vs- Human</option>
+        <!-- rest of the options are loaded in loadGameType() method-->
+      </select>
+    </li>
+
+    <li class="flex-inputForm-row">
+      <label for="name1">Player One Name</label>
+      <input disabled="disabled" type="text" id="name1">
+    </li>
+
+    <li class="flex-inputForm-row">
+      <label for="name2">Player Two Name</label>
+      <input disabled="disabled" type="text" id="name2">
+    </li>
+
+    <li class="flex-inputForm-row">
+      <button disabled="disabled" onclick="onSubmit()" type="submit">Start Game</button>
+    </li>
+  </ul>
+
+  <h2>3.- Forms</h2>
+  <p>Example of calling javascripts method for form validation.</p>
+  <p id="example3.errMsg" class="errArea">invisible text</p>
+  <form name="myForm-3" oninput="onInput()" onsubmit="return onSubmit()">
+
+    <label for="gameType-3">Select your game type</label>
+    <select id="gameType-3">
+      <option value="">-- Select game Type --</option>
+      <option value="HvH">Human -vs- Human</option>
+      <!-- rest of the options are loaded in loadGameType() method-->
+    </select><br><br>
+
+    <label for="name1-3">Player One Name</label>
+    <input disabled="disabled" type="text" id="name1-3"><br><br>
+
+    <label for="name2-3">Player Two Name</label>
+    <input disabled="disabled" type="text" id="name2-3"><br><br>
+
+    <input type="submit" value="Start Game">
+    <input type="reset" value="Reset">
+
+    <fieldset>
+      <legend>Choose your Oponent</legend>
+      <input type="radio" id="randomPlayer" name="comPlayers">
+      <label for="randomPlayer">Random Player</label>
+      <input type="radio" id="defensivePlayer" name="comPlayers">
+      <label for="defensivePlayer">Defensive Player</label>
+      <input type="radio" id="agresivePlayer" name="comPlayers">
+      <label for="agresivePlayer">Agresive Player</label>
+
+    </fieldset>
+  </form>
+
+  <h2>2.- document.write() method</h2>
+  <p>Example of calling document.write() method to write something.</p>
+  <script>
+    document.write("this text is write using <b style='color: red;'>document.write() javascript method</b>");
+  </script>
+
+  <h2>1.- the Light bulb</h2>
+  <p>in this case javascript change the value of src attribute of an image</p>
+  <button onclick="document.getElementById('myImage').src='images/pic_bulbon.gif';">turn <b>on</b> the Light</button>
+  <img id="myImage" src="images/pic_bulboff.gif" alt="Bulb" style="width: 50px;">
+  <button onclick="document.getElementById('myImage').src='images/pic_bulboff.gif';">turn <b>off</b> the Light</button>
+
+</body>
+
+</html>
