@@ -1,0 +1,15 @@
+{
+  "name": "tutorial",
+  "version": "1.0.0",
+  "description": "Package for node.js tutorial",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Terry",
+  "license": "ISC",
+  "dependencies": {
+    "math-expression-evaluator": "^1.3.8"
+  }
+}

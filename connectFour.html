@@ -1,17 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connect Four</title>
     <link href="styles/connectFour.css" rel="stylesheet" type="text/css" />
-    <script src ="scripts/connectFour.js" charset="utf-8"></script>
+    <script src="scripts/connectFour.js" charset="utf-8"></script>
 </head>
-<body>
-    <h3>The current Player is <span id = "current_Player">blackPlayer</span></h3>
-    <h3 id ="result"></h3>
-    <div class="grid">
-        <!-- here is created all grid elements-->
-    </div>
+
+<body onload="init()">
+    <table>
+        <tr>
+            <td>
+                <h2>Player selecttion</h2>
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <!-- used as information or error message. initial Msg filled in init() method-->
+                            <span id="form.msgText"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="gameType">Select your game type</label><br><br>
+                            <label for="name1">Player One Name</label><br><br>
+                            <label for="name2">Player Two Name</label><br>
+                        </td>
+                        <td>
+                            <select oninput="onInput()" id="gameType">
+                                <option value="">-- Select game Type --</option>
+                                <option value="HvH">Human -vs- Human</option>
+                                <!-- rest of the options are loaded in loadGameType() method-->
+                            </select><br><br>
+                            <input disabled="disabled" type="text" id="name1"><br><br>
+                            <input disabled="disabled" type="text" id="name2"><br><br>
+                            <input type="submit" onclick="onSubmit()" value="Start Game">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <h2 id="game.msgText"></h2>
+                <div class="game.grid">
+                    <!-- here is created all grid elements-->
+                </div>
+
+            </td>
+    </table>
 </body>
+
 </html>

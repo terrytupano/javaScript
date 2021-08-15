@@ -2,23 +2,48 @@
   display: flex;
   border: 1px solid;
   flex-wrap: wrap;
-  width: 140px;
-  height: 140px;
+  width: 350px;
+  height: 350px;
 }
 
 .grid div {
-  width: 18px;
-  height: 18px;
+  width: 48px;
+  height: 48px;
   border: 1px solid;
   border-color: gainsboro;
 }
 
 .playerRed {
   background-color: red;
-  border-radius: 10px;
+  border-radius: 25px;
 }
 
 .playerBlack {
   background-color: black;
-  border-radius: 10px;
+  border-radius: 25px;
+}
+
+table, th, td {
+  border: 1px solid black;
+  vertical-align: top;
+}
+
+.errMsg {
+  animation-name: errMsgAnimation;
+/*  animation-fill-mode: forwards; */
+  animation-duration: 2s;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes errMsgAnimation {
+  from {
+    color: lightgray; 
+  }
+  50% {
+    color: red;
+  }
+  to {
+    color: lightgray; 
+  }
 }
